@@ -1,0 +1,9 @@
+*{
+	box-sizing: border-box;
+}
+
+.custom-navbar {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 0;
+}
