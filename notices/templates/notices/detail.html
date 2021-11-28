@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<p></p>
+<div class="card border-dark mb-3">
+	<div class="card-header font-monospace">Notice</div>
+	<div class="card-body text-dark">
+		<h5 class="card-title">{{object.title}}</h5>
+		<p class="card-text">{{object.content}}</p>
+
+		{% for file in files %}
+		<div class="row">
+			<div class="col-12">
+				<a href="{{file.file.url}}" class="link-primary">Download linked file</a>
+			</div>
+		</div>
+		{% endfor %}
+
+		<div class="mt-4">
+
+			<p class="text-muted">Posted on: {{object.posted_on}}</p>
+			<p class="text-muted">Last Updated on: {{object.updated_on}}</p>
+		</div>
+
+	</div>
+</div>
+{% endblock %}

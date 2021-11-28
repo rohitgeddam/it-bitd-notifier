@@ -12,7 +12,7 @@
 		<h5 class="card-title">{{ notice.title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">{{ notice.posted_on }}</h6>
 		<p class="card-text">{{ notice.content }}</p>
-		<a href="#" class="card-link">Read More</a>
+		<a href="{{notice.id}}" class="card-link">Read More</a>
 	</div>
 </div>
 {% endfor %}

@@ -131,5 +131,8 @@ STATICFILES_DIRS = [
     "/var/www/static/",
 ]
 
+MEDIA_ROOT = os.path.join(BASE_DIR)
+MEDIA_URL = "/mediafiles/"
+
 
 AUTH_USER_MODEL = "users.User"

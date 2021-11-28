@@ -25,4 +25,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("notices/", include("notices.urls")),
     path("", views.HomePageView.as_view(), name="home_page"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
