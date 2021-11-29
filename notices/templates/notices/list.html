@@ -7,18 +7,25 @@
 {% for notice in notices %}
 
 
-<div class="card" style="width: 100%">
+<div class="card" style="width: 100%; margin-bottom: 10px;">
 	<div class="card-body">
 		<h5 class="card-title">{{ notice.title }}</h5>
 		<h6 class="card-subtitle mb-2 text-muted">{{ notice.posted_on }}</h6>
 		<p class="card-text">{{ notice.content }}</p>
+		<div class="my-2">
+			{% for tag in notice.tags.all %}
+			<span class="badge rounded-pill bg-warning text-dark">{{tag.title}}</span>
+			{% endfor %}
+		</div>
+
 		<a href="{{notice.id}}" class="card-link">Read More</a>
 	</div>
 </div>
 {% endfor %}
 
 
-<!-- 
+
+
 <div class="pagination">
 	<span class="step-links">
 		{% if page_obj.has_previous %}
@@ -33,5 +40,5 @@
 		<a href="?page={{ page_obj.next_page_number }}">next</a>
 		{% endif %}
 	</span>
-</div> -->
+</div>
 {% endblock %}

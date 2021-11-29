@@ -1,5 +1,7 @@
 from django.db import models
 
+from core.models import YearTag
+
 
 class NoticeFile(models.Model):
     """Class for Notice Files"""
@@ -16,6 +18,7 @@ class Notice(models.Model):
     content = models.TextField(null=True, blank=True)
     posted_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+    tags = models.ManyToManyField(YearTag, related_name="notices")
 
     def __str__(self):
         return self.title

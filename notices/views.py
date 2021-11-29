@@ -11,6 +11,10 @@ class NoticeList(ListView):
     model = Notice
     context_object_name = "notices"
     template_name = "notices/list.html"
+    ordering = [
+        "-updated_on",
+    ]
+    paginate_by = 10
 
 
 class NoticeDetailView(DetailView):
