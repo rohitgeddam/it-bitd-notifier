@@ -1,20 +1,20 @@
 from django.db import models
 
 
-class EventPhotos(models.Model):
+class EventPhoto(models.Model):
     """class for Event Photos"""
 
-    photo = models.ImageField(upload_to="events/images")
+    photo = models.ImageField(upload_to="uploads/events/images")
     event = models.ForeignKey("Event", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.event.title
 
 
-class EventFiles(models.Model):
+class EventFile(models.Model):
     """class for event files"""
 
-    file = models.FileField(upload_to="events/files")
+    file = models.FileField(upload_to="uploads/events/files")
     event = models.ForeignKey("Event", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -33,4 +33,4 @@ class Event(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.title}-{self.data}"
+        return f"{self.title}-{self.date}"

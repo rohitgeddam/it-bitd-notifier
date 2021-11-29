@@ -1,1 +1,48 @@
-Detail view
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="card border-dark mb-3">
+    <div class="card-header font-monospace">Event
+        <!-- {% for tag in notice.tags.all %}
+        <span class="badge rounded-pill bg-warning text-dark">{{tag.title}}</span>
+        {% endfor %} -->
+    </div>
+    <div class="card-body text-dark">
+        <h5 class="card-title">{{object.title}}</h5>
+        <p>Date: {{object.date}}</p>
+        <p class="card-text">{{object.description}}</p>
+
+
+
+        <div>
+            <div class="row">
+                {% for photo in photos.all %}
+                <div class="col-sm-3">
+                    <img src="{{photo.photo.url}}" alt="" class="img-thumbnail">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% for file in files %}
+        <div class="row">
+            <div class="col-12">
+                <a href="{{file.file.url}}" target="_blank" class="link-primary">Download file <i
+                        class="bi bi-download"></i>
+
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="mt-4">
+
+            <p class="text-muted">Posted on: {{object.posted_on}}</p>
+            <p class="text-muted">Last Updated on: {{object.updated_on}}</p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

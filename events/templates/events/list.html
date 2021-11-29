@@ -3,25 +3,25 @@
 {% block content %}
 <h2 class="text-center">Events <i class="bi bi-calendar"></i></h2>
 
-<!-- 
-{% for notice in notices %}
+
+{% for event in events %}
 
 
 <div class="card" style="width: 100%; margin-bottom: 10px;">
 	<div class="card-body">
-		<h5 class="card-title">{{ notice.title }}</h5>
-		<h6 class="card-subtitle mb-2 text-muted">{{ notice.posted_on }}</h6>
-		<p class="card-text">{{ notice.content }}</p>
-		<div class="my-2">
+		<h5 class="card-title">{{ event.title }}</h5>
+		<h6 class="card-subtitle mb-2 text-muted">{{ event.posted_on }}</h6>
+		<p class="card-text">{{ event.description|truncatechars:255}}</p>
+		<!-- <div class="my-2">
 			{% for tag in notice.tags.all %}
 			<span class="badge rounded-pill bg-warning text-dark">{{tag.title}}</span>
 			{% endfor %}
-		</div>
+		</div> -->
 
-		<a href="{{notice.id}}" class="card-link">Read More</a>
+		<a href="{{event.id}}" class="card-link">Read More</a>
 	</div>
 </div>
-{% endfor %} -->
+{% endfor %}
 
 
 

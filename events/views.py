@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
-from .models import Event
+from .models import Event, EventFile, EventPhoto
 
 # Create your views here.
 class EventList(ListView):
@@ -22,6 +22,8 @@ class EventDetailView(DetailView):
     model = Event
     template_name = "events/detail.html"
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["files"] = EventFile.objects.filter(event=self.object)
+        context["photos"] = EventPhoto.objects.filter(event=self.object)
+        return context
