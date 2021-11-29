@@ -17,7 +17,10 @@
 		{% for file in files %}
 		<div class="row">
 			<div class="col-12">
-				<a href="{{file.file.url}}" target="_blank" class="link-primary">Download linked file</a>
+				<a href="{{file.file.url}}" target="_blank" class="link-primary">Download file <i
+						class="bi bi-download"></i>
+
+				</a>
 			</div>
 		</div>
 		{% endfor %}

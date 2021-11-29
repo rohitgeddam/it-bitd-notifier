@@ -24,6 +24,7 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("notices/", include("notices.urls")),
+    path("events/", include("events.urls")),
     path("", views.HomePageView.as_view(), name="home_page"),
 ]
 
