@@ -44,8 +44,11 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         """override save method"""
         super().save(*args, **kwargs)
-        new_profile = StudentProfile.objects.create(user=self)
-        print(new_profile)
+        try:
+            new_profile = StudentProfile.objects.create(user=self)
+            print(new_profile)
+        except:
+            print("falied")
 
     def __str__(self):
         return self.username

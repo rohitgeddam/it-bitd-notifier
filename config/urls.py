@@ -25,7 +25,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("notices/", include("notices.urls")),
     path("events/", include("events.urls")),
-    path("", views.HomePageView.as_view(), name="home_page"),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("users/", include("users.urls")),
+    path("", views.HomePageView.as_view(), name="home"),
 ]
 
 if settings.DEBUG:

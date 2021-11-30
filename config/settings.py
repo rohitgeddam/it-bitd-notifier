@@ -136,3 +136,6 @@ MEDIA_URL = "/mediafiles/"
 
 
 AUTH_USER_MODEL = "users.User"
+
+
+LOGIN_REDIRECT_URL = "home"
