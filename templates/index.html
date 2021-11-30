@@ -1,3 +1,35 @@
 {% extends "base.html" %}
 
 {% block title %}Home{% endblock %}
+
+
+{% block content %}
+
+<div class="card text-dark bg-light mb-3" style="margin-top: 10px;">
+    <div class="card-header">Latest Notices</div>
+    <div class="card-body">
+        {% for e in notices %}
+        <a href="/notices/{{e.id}}" class="card-title" style="color: blue; display: block;">{{e.title}}</a>
+        {% endfor %}
+    </div>
+    <div class="card-footer bg-transparent border-primary"><a href="/notices" class="badge bg-dark text-light">view all
+            notices</a>
+    </div>
+
+</div>
+
+
+<div class="card text-dark bg-light mb-3" style="margin-top: 10px;">
+    <div class="card-header">Latest Events</div>
+    <div class="card-body">
+        {% for e in events %}
+        <a href="/events/{{e.id}}" class="card-title" style="color: blue; display: block;">{{e.title}}</a>
+        {% endfor %}
+    </div>
+    <div class="card-footer bg-transparent border-primary"><a href="/events" class="badge bg-dark text-light">view all
+            events</a>
+    </div>
+
+</div>
+
+{% endblock %}
