@@ -9,10 +9,11 @@ black = "*"
 [packages]
 Django = "*"
 Pillow = "*"
-redis = "==3.2.0"
 django-environ = "*"
 environ = "*"
 twilio = "==6.32.0"
+celery = "*"
+redis = "*"
 
 [requires]
 python_version = "3.9"
