@@ -1,6 +1,7 @@
 from django.db import models
-
 from core.models import YearTag
+
+from django.core.mail import send_mass_mail
 
 
 class NoticeFile(models.Model):
@@ -22,3 +23,14 @@ class Notice(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        recepient_list = (["vrahul200023@gmail.com", "rohitgeddam2018@gmail.com"],)
+        message1 = (
+            self.title,
+            self.content,
+            "notifier.it.bitd@gmail.com",
+            recepient_list,
+        )
+        send_mass_mail((message1,), fail_silently=False)
+        return super().save(*args, **kwargs)

@@ -7,8 +7,11 @@ verify_ssl = true
 black = "*"
 
 [packages]
-django = "*"
-pillow = "*"
+Django = "*"
+Pillow = "*"
+redis = "==3.2.0"
+django-environ = "*"
+environ = "*"
 
 [requires]
 python_version = "3.9"
