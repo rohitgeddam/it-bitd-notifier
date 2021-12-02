@@ -12,24 +12,29 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 #       (5, 'admin'),
 #   )
 
+phone_regex = RegexValidator(
+    regex=r"^\+?1?\d{9,15}$",
+    message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",
+)
+
 
 class StudentProfile(models.Model):
     """StudentProfile Class"""
 
     user = models.OneToOneField("User", on_delete=models.CASCADE)
     batch = models.IntegerField(
-        validators=[MinValueValidator(2000), MaxValueValidator(2100)], null=True
+        validators=[MinValueValidator(2000), MaxValueValidator(2100)],
+        null=True,
+        blank=True,
     )
-    phone_regex = RegexValidator(
-        regex=r"^\+?1?\d{9,15}$",
-        message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.",
-    )
+
+    email = models.EmailField(null=True, blank=True)
     phone_number = models.CharField(
         validators=[phone_regex], max_length=17, blank=True, null=True
     )  # validators should be a list
 
-    send_email_notification = models.BooleanField(default=True)
-    send_sms_notification = models.BooleanField(default=True)
+    receive_email_notification = models.BooleanField(default=True)
+    receive_sms_notification = models.BooleanField(default=True)
 
     is_email_verified = models.BooleanField(default=False)
     is_mobile_verified = models.BooleanField(default=False)
