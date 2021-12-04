@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import environ
 
+
 BASE_URL = "http://localhost:8000"
 # Initialise environment variables
 env = environ.Env()
@@ -172,3 +173,7 @@ TWILIO_NUMBER = env("TWILIO_NUMBER")
 #     # "+919098301903",
 #     "+916266218189",  # use the format +19735551234
 # ]
+
+import django_heroku
+# Activate Django-Heroku.
+django_heroku.settings(locals())
