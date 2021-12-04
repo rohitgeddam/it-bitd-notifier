@@ -174,6 +174,7 @@ TWILIO_NUMBER = env("TWILIO_NUMBER")
 #     "+916266218189",  # use the format +19735551234
 # ]
 
-# import django_heroku
-# # Activate Django-Heroku.
-# django_heroku.settings(locals())
+import django_heroku
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
