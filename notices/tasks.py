@@ -29,11 +29,11 @@ def broadcast_sms(title, content):
 
 @shared_task
 def custom_send_email(title, content):
-    recepient_list = ["vrahul200023@gmail.com", "rohitgeddam2018@gmail.com"]
+    recepient_list = ["rohitgeddam2018@gmail.com"]
     message1 = (
         title,
         content,
-        "notifier.it.bitd@gmail.com",
+        "notifier.bitd.it@gmail.com",
         recepient_list,
     )
     try:

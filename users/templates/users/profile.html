@@ -32,10 +32,10 @@ PRO
                 correct: null,
                 editMode: false,
                 profile: {
-                    email: "{{profile.email}}",
+                    email: "{{user.email}}" === "" ? "None" : "{{user.email}}",
                     phoneNumber: "{{profile.phone_number}}",
-                    getSms: "{{profile.receive_sms_notifications}}" === "True" ? true : false,
-                    getEmail: "{{profile.receive_email_notifications}}" === "True" ? true : false,
+                    getSms: "{{profile.receive_sms_notification}}" === "True" ? true : false,
+                    getEmail: "{{profile.receive_email_notification}}" === "True" ? true : false,
                 }
             };
             this.handleEdit = this.handleEdit.bind(this)
@@ -49,13 +49,12 @@ PRO
         }
 
         handleChange(event) {
-            console.log(event.target.name)
-            console.log(this.state.profile)
             const target = event.target;
             const value = target.type === 'checkbox' ? target.checked : target.value;
             const name = target.name;
 
             this.setState({
+                email: "{{user.email}}",
                 profile: {
                     ...this.state.profile,
                     [name]: value
@@ -66,15 +65,16 @@ PRO
         render() {
             let editMode = (
                 <div className="card">
-                    <h5 className="card-header">Edit Profile</h5>
+                    <h5 className="card-header">{{ user.email }}</h5>
                     <form className="p-3">
+
                         <div className="mb-3">
                             <label htmlFor="username" className="form-label">Username</label>
                             <input type="text" className="form-control" id="username" aria-describedby="username" name="username" disabled value="{{ user.username }}" />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                            <input onChange={this.handleChange} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={this.state.profile.email} />
+                            <input onChange={this.handleChange} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={this.state.email} />
                             <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                         </div>
 
