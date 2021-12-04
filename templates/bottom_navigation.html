@@ -1,16 +1,31 @@
 <div>
-    <div class="row">
+    <div class="row align-middle">
         <a href="/notices" class="col bottom-nav-item">
             <div>
-                <i class="bi bi-inbox"></i>
-                Notice
+                <i class="bi bi-inbox" style="font-size: 2rem; color: #f0ad4e;"></i>
+
             </div>
         </a>
         <a href="/events" class="col bottom-nav-item">
             <div>
-                <i class="bi bi-calendar"></i>
-                Events
+                <i class="bi bi-calendar" style="font-size: 2rem; color:  #f0ad4e;"></i>
             </div>
         </a>
+        <div class="col bottom-nav-item">
+            <a style="color: white; padding: 0;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-person-circle" style="font-size: 2rem; color:  #f0ad4e;"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                {% if user.is_authenticated %}
+                <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/accounts/logout/?next=/">Logout</a>
+                {% else %}
+                <a class="dropdown-item" href="/accounts/login">Login</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
