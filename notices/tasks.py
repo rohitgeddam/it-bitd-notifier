@@ -25,7 +25,7 @@ def broadcast_sms(title, content):
                 recepient_list.append("+91" + user.phone_number)
             else:
                 recepient_list.append(user.phone_number)
-
+    print("SMS LIST")
     print(recepient_list)
     try:
         for recipient in recepient_list:
@@ -51,6 +51,9 @@ def custom_send_email(title, content):
         if user.email != "" and user.receive_email_notification is True:
             recepient_list.append(user.email)
 
+    print("EMAIL LIST")
+    print(recepient_list)
+    
     message1 = (
         title,
         content,
