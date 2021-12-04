@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import environ
 
+BASE_URL = "http://localhost:8000"
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -167,7 +168,7 @@ CELERY_TIMEZONE = "Asia/Calcutta"
 TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = env("TWILIO_AUTH_TOKEN")
 TWILIO_NUMBER = env("TWILIO_NUMBER")
-SMS_BROADCAST_TO_NUMBERS = [
-    # "+919098301903",
-    "+916266218189",  # use the format +19735551234
-]
+# SMS_BROADCAST_TO_NUMBERS = [
+#     # "+919098301903",
+#     "+916266218189",  # use the format +19735551234
+# ]

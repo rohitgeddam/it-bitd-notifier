@@ -1,143 +1,49 @@
 {% extends "base.html" %}
 
-{% block title %}
-PRO
-{% endblock %}
-
-
-
-
-
+{% block title %} Profile {% endblock %}
 {% block content %}
 <style>
-
-</style>
-
-<div id="profile"></div>
-{% endblock %}
-
-
-{% block scripts %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js" charset="utf-8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js" charset="utf-8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js" charset="utf-8"></script>
-
-
-<script type="text/babel">
-    class Profile extends React.Component {
-
-        constructor(props) {
-            super(props);
-            this.state = {
-                correct: null,
-                editMode: false,
-                profile: {
-                    email: "{{user.email}}" === "" ? "None" : "{{user.email}}",
-                    phoneNumber: "{{profile.phone_number}}",
-                    getSms: "{{profile.receive_sms_notification}}" === "True" ? true : false,
-                    getEmail: "{{profile.receive_email_notification}}" === "True" ? true : false,
-                }
-            };
-            this.handleEdit = this.handleEdit.bind(this)
-            this.handleChange = this.handleChange.bind(this)
-        }
-
-        handleEdit(event) {
-            this.setState((state, props) => ({
-                editMode: !state.editMode
-            }));
-        }
-
-        handleChange(event) {
-            const target = event.target;
-            const value = target.type === 'checkbox' ? target.checked : target.value;
-            const name = target.name;
-
-            this.setState({
-                email: "{{user.email}}",
-                profile: {
-                    ...this.state.profile,
-                    [name]: value
-                }
-            });
-        }
-
-        render() {
-            let editMode = (
-                <div className="card">
-                    <h5 className="card-header">{{ user.email }}</h5>
-                    <form className="p-3">
-
-                        <div className="mb-3">
-                            <label htmlFor="username" className="form-label">Username</label>
-                            <input type="text" className="form-control" id="username" aria-describedby="username" name="username" disabled value="{{ user.username }}" />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                            <input onChange={this.handleChange} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={this.state.email} />
-                            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                        </div>
-
-                        <div className="mb-3">
-                            <label htmlFor="exampleInputPhoneNumber" className="form-label">Phone Number</label>
-                            <input onChange={this.handleChange} type="number" className="form-control" id="exampleInputPhoneNumber" aria-describedby="phoneNUmberHelp" name="phoneNumber" value={this.state.profile.phone_number} />
-                            <div id="phoneNumberHelp" className="form-text">We'll never share your phone number with anyone else.</div>
-                        </div>
-
-                        <div className="mb-3 form-check">
-                            <input onChange={this.handleChange} type="checkbox" className="form-check-input" id="get_sms" name="getSms" checked={this.state.profile.getSms} />
-                            <label className="form-check-label" htmlFor="get_sms">Receive SMS Notifications</label>
-                        </div>
-
-                        <div className="mb-3 form-check">
-                            <input onChange={this.handleChange} type="checkbox" className="form-check-input" id="get_email" name="getEmail" checked={this.state.profile.getEmail} />
-                            <label className="form-check-label" htmlFor="get_email">Receive Email Notifications</label>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </form>
-
-                </div>
-            )
-
-
-
-            let displayMode = (
-                <div className="card">
-                    <h5 className="card-header">Profile</h5>
-                    <div className="card-body">
-                        <h5 className="card-title" >Username</h5>
-                        <p className="card-text">{{ user.username }}</p>
-
-                        <h5 className="card-title" >Email</h5>
-                        <p className="card-text">{{ profile.email }}</p>
-
-                        <h5 className="card-title" >Phone Number</h5>
-                        <p className="card-text">{{ profile.phone_number }}</p>
-
-                        <h5 className="card-title" >Receive Email Notifications</h5>
-                        <p className="card-text">{{ profile.receive_email_notification }}</p>
-
-                        <h5 className="card-title" >Receive SMS Notifications</h5>
-                        <p className="card-text">{{ profile.receive_sms_notification }}</p>
-
-                        <button onClick={this.handleEdit}>Edit Information</button>
-                    </div>
-                </div>
-            )
-            return (
-                this.state.editMode ? editMode : displayMode
-            )
-        }
+    a {
+        color: blue;
     }
+</style>
+<div class="container light-style flex-grow-1 container-p-y">
+    <div class="card">
+        <h5 class="card-header"><i class="bi bi-person"></i> My Profile</h5>
+        <div class="card-body row">
+            <div class="col-12 col-md-8">
+                <h5 class="card-title">Username</h5>
+                <p class="card-text">{{user.username}}</p>
+
+                <h5 class="card-title">Email</h5>
+                <p class="card-text">{{user.email}}</p>
+
+                <h5 class="card-title">Phone Number</h5>
+                <p class="card-text">{{user.phone_number}}</p>
+
+                <h5 class="card-title">My Batch</h5>
+                <p class="card-text">{{user.batch}}</p>
+
+                <h5 class="card-title">Receive Email Notification</h5>
+                <p class="card-text">{{user.receive_email_notification}}</p>
+
+                <h5 class="card-title">Receive Sms Notification</h5>
+                <p class="card-text">{{user.receive_sms_notification}}</p>
+            </div>
 
 
-    ReactDOM.render(
-        <Profile />,
-        document.getElementById('profile')
-    );
-
-
-
-</script>
-
+            <div class="col-12 col-md-4 mt-4 mt-md-0">
+                <div class="card" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="{% url 'settings_change' %}"><i class="bi bi-gear"></i>
+                                Change Settings </a></li>
+                        <li class="list-group-item"><a href="{% url 'password_change' %}"><i class="bi bi-key"></i>
+                                Change Password</a></li>
+                        <!-- <li class="list-group-item">Vestibulum at eros</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

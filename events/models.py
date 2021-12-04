@@ -34,3 +34,24 @@ class Event(models.Model):
 
     def __str__(self):
         return f"{self.title}-{self.date}"
+
+    def save(self, *args, **kwargs):
+
+        return super().save(*args, **kwargs)
+
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.conf import settings
+
+from .tasks import custom_send_email, broadcast_sms
+
+
+@receiver(post_save, sender=Event)
+def my_handler(sender, instance, **kwargs):
+    print("post save callback")
+    print(instance.id)
+    full_url = f"{settings.BASE_URL}/events/{instance.id}"
+    content = f"\n{instance.description}\nDate - {instance.date}\nTime - {instance.time}\nView Event - {full_url}"
+    custom_send_email.delay(instance.title, content)
+    broadcast_sms.delay(instance.title, content)

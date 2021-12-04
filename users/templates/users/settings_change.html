@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="card">
+    <div class=" card-body">
+        <h5 class="card-title">Settings Change Form</h5>
+        <form action={% url 'settings_change' %} method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
