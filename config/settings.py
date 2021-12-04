@@ -15,7 +15,7 @@ import os
 import environ
 
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = os.environ['BASE_URL']
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
