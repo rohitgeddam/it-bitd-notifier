@@ -34,9 +34,9 @@ phone_regex = RegexValidator(
 
 class User(AbstractUser):
     # user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
-    email = models.EmailField("email address", blank=False)
+    email = models.EmailField("email address", blank=False, unique=True)
     phone_number = models.CharField(
-        validators=[phone_regex], max_length=17, blank=True, null=True
+        validators=[phone_regex], max_length=17, blank=True, null=True, unique=True
     )  # validators should be a list
     batch = models.IntegerField(
         validators=[MinValueValidator(2000), MaxValueValidator(2100)],
