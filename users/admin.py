@@ -1,34 +1,56 @@
 # Register your models here.
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from .models import User
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User as U
 
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
-class EmailRequiredMixin(object):
-    def __init__(self, *args, **kwargs):
-        super(EmailRequiredMixin, self).__init__(*args, **kwargs)
-        # make user email field required
-        self.fields["email"].required = True
+from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 
-class MyUserCreationForm(EmailRequiredMixin, UserCreationForm):
-    pass
-
-
-class MyUserChangeForm(EmailRequiredMixin, UserChangeForm):
-    pass
-
-
-class EmailRequiredUserAdmin(UserAdmin):
-    form = MyUserChangeForm
-    add_form = MyUserCreationForm
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = User
+    list_display = (
+        "username",
+        "email",
+        "is_staff",
+        "is_active",
+    )
+    list_filter = (
+        "is_staff",
+        "is_active",
+    )
+    fieldsets = (
+        (None, {"fields": ("username", "password", "batch")}),
+        (
+            "Contact",
+            {
+                "fields": (
+                    "email",
+                    "phone_number",
+                )
+            },
+        ),
+        (
+            "Settings",
+            {
+                "fields": (
+                    "receive_email_notification",
+                    "receive_sms_notification",
+                )
+            },
+        ),
+        ("Permissions", {"fields": ("is_staff", "is_active")}),
+    )
     add_fieldsets = (
         (
             None,
             {
+                "classes": ("wide",),
                 "fields": (
                     "username",
                     "password1",
@@ -38,13 +60,14 @@ class EmailRequiredUserAdmin(UserAdmin):
                     "batch",
                     "receive_email_notification",
                     "receive_sms_notification",
+                    "is_staff",
+                    "is_active",
                 ),
-                "classes": ("wide",),
             },
         ),
     )
+    search_fields = ("email",)
+    ordering = ("email",)
 
 
-# admin.site.unregister(U)
-admin.site.register(User, EmailRequiredUserAdmin)
-# admin.site.register(StudentProfile)
+admin.site.register(User, CustomUserAdmin)
