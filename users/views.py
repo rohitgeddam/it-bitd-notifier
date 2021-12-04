@@ -2,8 +2,10 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import SettingsChangeForm
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def user_profile_view(request):
     """User profile view"""
     context = {}
@@ -12,7 +14,7 @@ def user_profile_view(request):
         # context["profile"] = StudentProfile.objects.get(user=request.user)
     return render(request, "users/profile.html", context)
 
-
+@login_required
 def change_settings(request):
     """User change settings"""
     user = request.user
