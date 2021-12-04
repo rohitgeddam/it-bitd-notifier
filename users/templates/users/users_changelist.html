@@ -1,0 +1,27 @@
+{% extends 'admin/change_list.html' %}
+
+{% block object-tools %}
+    <div style="padding: 20px 0;">
+        <form action="download-user-list/" method="POST" style="margin: 10px 0;">
+            {% csrf_token %}
+                <button type="submit" style="padding: 5px 10px;">Download User List</button>
+        </form>
+        <hr>
+        <form action="upload-user-list/" method="POST"  enctype="multipart/form-data" style="margin-top: 10px;">
+            {% csrf_token %}
+            <input type="file" name="csv_file" style="padding: 5px 10px;">
+            <button type="submit" id="subBtn" style="padding: 5px 10px;" disabled>Upload User List</button>
+        </form>
+    </div>
+    <br />
+    {{ block.super }}
+
+    <script>
+        el = document.querySelector("input[type=file]")
+        btn = document.getElementById("subBtn")
+       
+        el.addEventListener("change", function(){
+            btn.disabled = false;
+        })
+      </script>
+{% endblock %}

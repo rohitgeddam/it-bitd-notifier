@@ -20,7 +20,9 @@ from django.conf.urls.static import static
 from django.urls import include, path
 
 from . import views
-
+admin.site.site_header = "NOTIFIER IT BITD ADMIN"
+admin.site.site_title = "NOTIFIER IT BITD ADMIN PORTAL"
+admin.site.index_title = "Welcome to Notifier I.T BIT-D admin portal"
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("notices/", include("notices.urls")),
