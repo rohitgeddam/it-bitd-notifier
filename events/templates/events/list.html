@@ -2,49 +2,65 @@
 {% load bootstrap %}
 
 {% block content %}
+
+
 <h2 class="text-center">Events <i class="bi bi-calendar"></i></h2>
-<div class="mb-5">
-	<form method="GET">
-		{{filter.form|bootstrap }}
-		<button type="submit" class="btn btn-warning w-100">Search</button>
-	</form>
-</div>
 
-{% for event in filter.qs %}
+<div class="row">
+
+	<div class="col col-12 col-md-4">
+		<div class="mb-5">
+			<form method="GET">
+				{{filter.form|bootstrap }}
+				<button type="submit" class="btn btn-warning w-100">Search</button>
+			</form>
+		</div>
+
+	</div>
+
+	<div class="col col-12 col-md-8">
 
 
-<div class="card" style="width: 100%; margin-bottom: 10px;">
-	<div class="card-body">
-		<h5 class="card-title">{{ event.title }}</h5>
-		<h6 class="card-subtitle mb-2 text-muted">{{ event.posted_on }}</h6>
-		<p class="card-text">{{ event.description|truncatechars:255}}</p>
-		<!-- <div class="my-2">
+		{% for event in filter.qs %}
+
+		<div class="card" style="width: 100%; margin-bottom: 10px;">
+			<div class="card-body">
+				<h5 class="card-title">{{ event.title }}</h5>
+				<h6 class="card-subtitle mb-2 text-muted">{{ event.posted_on }}</h6>
+				<p class="card-text">{{ event.description|truncatechars:255}}</p>
+				<!-- <div class="my-2">
 			{% for tag in notice.tags.all %}
 			<span class="badge rounded-pill bg-warning text-dark">{{tag.title}}</span>
 			{% endfor %}
 		</div> -->
 
-		<a href="{{event.id}}" class="card-link">Read More</a>
+				<a href="{{event.id}}" class="card-link">Read More</a>
+			</div>
+		</div>
+		{%endfor %}
+
+		<div class="pagination">
+			<span class="step-links">
+				{% if page_obj.has_previous %}
+				<a href="?page={{ page_obj.previous_page_number }}">previous</a>
+				{% endif %}
+
+				<span class="current">
+					Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+				</span>
+
+				{% if page_obj.has_next %}
+				<a href="?page={{ page_obj.next_page_number }}">next</a>
+				{% endif %}
+			</span>
+		</div>
+
 	</div>
 </div>
-{% endfor %}
 
 
 
 
-<div class="pagination">
-	<span class="step-links">
-		{% if page_obj.has_previous %}
-		<a href="?page={{ page_obj.previous_page_number }}">previous</a>
-		{% endif %}
 
-		<span class="current">
-			Page {{ page_obj.number }} of {{ paginator.num_pages }}.
-		</span>
 
-		{% if page_obj.has_next %}
-		<a href="?page={{ page_obj.next_page_number }}">next</a>
-		{% endif %}
-	</span>
-</div>
 {% endblock %}
