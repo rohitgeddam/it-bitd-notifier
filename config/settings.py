@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "users",
     "django_filters",
     "bootstrapform",
+    "ckeditor",
 ]
 
 MIDDLEWARE = [

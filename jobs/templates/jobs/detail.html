@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<p></p>
+<div class="card border-dark mb-3">
+    <div class="card-header font-monospace">Job
+        {% for tag in job.year_tags.all %}
+        <span class="badge rounded-pill bg-warning text-dark">{{tag.title}}</span>
+        {% endfor %}
+        <span class="badge rounded-pill bg-info text-light">
+            {% if job.offer_type == "I"%}
+            Internship
+            {% else %}
+            Job
+            {% endif %}
+        </span>
+        <span class="badge rounded-pill bg-info text-light">
+            {% if job.application_type == "OF"%}
+            Off-Campus
+            {% else %}
+            On-Campus
+            {% endif %}
+        </span>
+    </div>
+    <div class="card-body text-dark">
+        <h5 class="card-title">{{object.title}}</h5>
+        <p class="card-text">{{object.job_description|safe}}</p>
+        <a href="{{object.application_link}}" style="color: blue;">Job Link</a>
+
+        {% for file in files %}
+        <!-- <div class="row">
+            <div class="col-12">
+                <a href="{{file.file.url}}" target="_blank" class="link-primary">Download file <i
+                        class="bi bi-download"></i>
+
+                </a>
+            </div>
+        </div> -->
+        {% endfor %}
+
+        <div class="mt-4">
+
+            <p class="text-muted">Posted on: {{object.posted_on}}</p>
+            <p class="text-muted">Last Updated on: {{object.updated_on}}</p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from core.models import YearTag
+from ckeditor.fields import RichTextField
 
 from notices.tasks import broadcast_sms, custom_send_email
 
@@ -16,7 +17,7 @@ class Notice(models.Model):
     """Class for Notice"""
 
     title = models.CharField(max_length=256)
-    content = models.TextField(null=True, blank=True)
+    content = RichTextField()
     posted_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(YearTag, related_name="notices")

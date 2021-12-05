@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class EventPhoto(models.Model):
@@ -26,7 +27,7 @@ class Event(models.Model):
     """Class for Event"""
 
     title = models.CharField(max_length=64)
-    description = models.TextField(null=True, blank=True)
+    description = RichTextField()
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
     posted_on = models.DateTimeField(auto_now_add=True)

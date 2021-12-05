@@ -20,6 +20,7 @@ wheel = "*"
 django-heroku = "*"
 django-filter = "*"
 django-bootstrap-form = "*"
+django-ckeditor = "*"
 
 [requires]
 python_version = "3.9"

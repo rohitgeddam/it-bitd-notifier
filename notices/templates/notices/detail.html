@@ -12,7 +12,7 @@
 	</div>
 	<div class="card-body text-dark">
 		<h5 class="card-title">{{object.title}}</h5>
-		<p class="card-text">{{object.content}}</p>
+		<p class="card-text">{{object.content|safe}}</p>
 
 		{% for file in files %}
 		<div class="row">
