@@ -15,10 +15,11 @@ import os
 import environ
 
 
-BASE_URL = "http://localhost:8000"
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
+
+BASE_URL = env("BASE_URL")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ["*"]
 
@@ -139,6 +140,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR)
+
 MEDIA_URL = "/mediafiles/"
 
 
@@ -155,7 +157,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_USER")
 
 
 BROKER_URL = "redis://127.0.0.1:6379"
@@ -174,6 +176,7 @@ TWILIO_NUMBER = env("TWILIO_NUMBER")
 #     "+916266218189",  # use the format +19735551234
 # ]
 
-# import django_heroku
+import django_heroku
+
 # # Activate Django-Heroku.
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
