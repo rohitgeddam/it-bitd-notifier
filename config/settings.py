@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     "notices",
     "core",
     "users",
+    "django_filters",
+    "bootstrapform",
 ]
 
 MIDDLEWARE = [

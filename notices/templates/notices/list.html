@@ -1,10 +1,16 @@
 {% extends "base.html" %}
-
+{% load bootstrap %}
 {% block content %}
 <h2 class="text-center">Notices <i class="bi bi-inbox"></i></h2>
 
+<div class="mb-5">
+	<form method="GET">
+		{{filter.form|bootstrap }}
+		<button type="submit" class="btn btn-warning w-100">Search</button>
+	</form>
+</div>
 
-{% for notice in notices %}
+{% for notice in filter.qs %}
 
 
 <div class="card" style="width: 100%; margin-bottom: 10px;">
