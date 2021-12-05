@@ -22,3 +22,23 @@ class Job(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.conf import settings
+from .tasks import broadcast_sms, custom_send_email
+
+# from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+
+
+@receiver(post_save, sender=Job)
+def my_handler(sender, instance, **kwargs):
+    print("post save callback")
+    print(instance.id)
+    full_url = f"{settings.BASE_URL}/jobs/{instance.id}"
+
+    content = f"\n{strip_tags(instance.job_description)}\nView Job Post - {full_url}"
+    custom_send_email.delay(instance.title, content)
+    broadcast_sms.delay(instance.title, content)
