@@ -15,10 +15,11 @@ import os
 import environ
 
 
-BASE_URL = os.environ['BASE_URL']
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
+
+BASE_URL = env("BASE_URL")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(env("DEBUG"))
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = ["*"]
 
@@ -51,6 +52,9 @@ INSTALLED_APPS = [
     "notices",
     "core",
     "users",
+    "django_filters",
+    "bootstrapform",
+    "ckeditor",
 ]
 
 MIDDLEWARE = [
@@ -138,9 +142,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     "/var/www/static/",
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_ROOT = os.path.join(BASE_DIR)
+
 MEDIA_URL = "/mediafiles/"
 
 
@@ -161,7 +166,7 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 
 
 # BROKER_URL = "redis://127.0.0.1:6379"
-BROKER_URL=os.environ['REDIS_URL']
+BROKER_URL = os.environ["REDIS_URL"]
 # CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
@@ -179,5 +184,5 @@ TWILIO_NUMBER = env("TWILIO_NUMBER")
 
 import django_heroku
 
-# Activate Django-Heroku.
+# # Activate Django-Heroku.
 django_heroku.settings(locals())

@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load bootstrap %}
+
 {% block title %}Login{% endblock %}
 
 
@@ -9,8 +11,8 @@
         <h5 class="card-title">Login</h5>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Login</button>
+            {{ form|bootstrap }}
+            <button type="submit" class="btn btn-warning w-100">Login</button>
             <a href="/accounts/password_reset/" style="color: blue;">reset password</a>
 
         </form>
