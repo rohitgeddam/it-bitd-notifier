@@ -7,43 +7,50 @@
         color: blue;
     }
 </style>
-<div class="container light-style flex-grow-1 container-p-y">
-    <div class="card">
-        <h5 class="card-header"><i class="bi bi-person"></i> My Profile</h5>
-        <div class="card-body row">
-            <div class="col-12 col-md-8">
-                <h5 class="card-title">Username</h5>
-                <p class="card-text">{{user.username}}</p>
+<div class="container light-style flex-grow-1 container-p-y mb-5 mb-md-0">
 
-                <h5 class="card-title">Email</h5>
-                <p class="card-text">{{user.email}}</p>
+    <div class="card-body row">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <h5 class="card-header"><i class="bi bi-person"></i> My Profile</h5>
 
-                <h5 class="card-title">Phone Number</h5>
-                <p class="card-text">{{user.phone_number}}</p>
+                <div class="p-4">
+                    <h5 class="card-title">Username</h5>
+                    <p class="card-text">{{user.username}}</p>
 
-                <h5 class="card-title">My Batch</h5>
-                <p class="card-text">{{user.batch}}</p>
+                    <h5 class="card-title">Email</h5>
+                    <p class="card-text">{{user.email}}</p>
 
-                <h5 class="card-title">Receive Email Notification</h5>
-                <p class="card-text">{{user.receive_email_notification}}</p>
+                    <h5 class="card-title">Phone Number</h5>
+                    <p class="card-text">{{user.phone_number}}</p>
 
-                <h5 class="card-title">Receive Sms Notification</h5>
-                <p class="card-text">{{user.receive_sms_notification}}</p>
-            </div>
+                    <h5 class="card-title">My Batch</h5>
+                    <p class="card-text">{{user.batch}}</p>
 
+                    <h5 class="card-title">Receive Email Notification</h5>
+                    <p class="card-text">{{user.receive_email_notification}}</p>
 
-            <div class="col-12 col-md-4 mt-4 mt-md-0">
-                <div class="card" style="width: 18rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="{% url 'settings_change' %}"><i class="bi bi-gear"></i>
-                                Change Settings </a></li>
-                        <li class="list-group-item"><a href="{% url 'password_change' %}"><i class="bi bi-key"></i>
-                                Change Password</a></li>
-                        <!-- <li class="list-group-item">Vestibulum at eros</li> -->
-                    </ul>
+                    <h5 class="card-title">Receive Sms Notification</h5>
+                    <p class="card-text">{{user.receive_sms_notification}}</p>
                 </div>
             </div>
         </div>
+
+
+        <div class="col-12 col-md-6 mt-4 mt-md-0">
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="{% url 'settings_change' %}"><i class="bi bi-gear"></i>
+                            Change Settings </a></li>
+                    <li class="list-group-item"><a href="{% url 'password_change' %}"><i class="bi bi-key"></i>
+                            Change Password</a></li>
+                    <!-- <li class="list-group-item">Vestibulum at eros</li> -->
+                </ul>
+            </div>
+        </div>
+
+
     </div>
+
 </div>
 {% endblock %}

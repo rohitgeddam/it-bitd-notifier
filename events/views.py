@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
 from .models import Event, EventFile, EventPhoto
-
+from .filters import EventFilter
 from datetime import datetime
 
 # Create your views here.
@@ -17,6 +17,11 @@ class EventList(ListView):
     #     "-updated_on",
     # ]
     paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["filter"] = EventFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 
 class EventDetailView(DetailView):
