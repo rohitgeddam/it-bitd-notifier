@@ -27,8 +27,9 @@
     <div class="card-body text-dark">
         <h5 class="card-title">{{object.title}}</h5>
         <p class="card-text">{{object.job_description|safe}}</p>
+        {% if object.application_link %}
         <a href="{{object.application_link}}" style="color: blue;">Job Link</a>
-
+        {% endif %}
         {% for file in files %}
         <!-- <div class="row">
             <div class="col-12">

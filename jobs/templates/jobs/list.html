@@ -10,7 +10,7 @@
             <div class="card-body">
                 <form method="GET">
                     {{filter.form|bootstrap }}
-                    <button type="submit" class="btn btn-warning w-100">Filter</button>
+                    <button type="submit" class="btn btn-dark w-100">Filter</button>
                 </form>
             </div>
 
@@ -24,35 +24,38 @@
         {% for job in filter.qs %}
 
 
-        <div class="card" style="width: 100%; margin-bottom: 10px;">
-            <div class="card-body">
-                <h5 class="card-title">{{ job.title }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ job.posted_on }}</h6>
-                <p class="card-text">{{ job.job_description|safe|truncatechars:255 }}</p>
-                <div class="my-2">
-                    {% for tag in job.year_tags.all %}
-                    <span class="badge rounded-pill bg-warning text-dark">{{tag.title}}</span>
-                    {% endfor %}
-                    <span class="badge rounded-pill bg-info text-light">
-                        {% if job.offer_type == "I"%}
-                        Internship
-                        {% else %}
-                        Job
-                        {% endif %}
-                    </span>
-                    <span class="badge rounded-pill bg-info text-light">
-                        {% if job.application_type == "OF"%}
-                        Off-Campus
-                        {% else %}
-                        On-Campus
-                        {% endif %}
-                    </span>
+        <a href="{{job.id}}" class="card-link">
+
+            <div class="card" style="width: 100%; margin-bottom: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ job.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ job.posted_on }}</h6>
+                    <p class="card-text">{{ job.job_description|safe|truncatechars:255 }}</p>
+                    <div class="my-2">
+                        {% for tag in job.year_tags.all %}
+                        <span class="badge rounded-pill bg-warning text-dark">{{tag.title}}</span>
+                        {% endfor %}
+                        <span class="badge rounded-pill bg-info text-light">
+                            {% if job.offer_type == "I"%}
+                            Internship
+                            {% else %}
+                            Job
+                            {% endif %}
+                        </span>
+                        <span class="badge rounded-pill bg-info text-light">
+                            {% if job.application_type == "OF"%}
+                            Off-Campus
+                            {% else %}
+                            On-Campus
+                            {% endif %}
+                        </span>
+
+                    </div>
+
 
                 </div>
-
-                <a href="{{job.id}}" class="card-link" style="color: blue;">Read More</a>
             </div>
-        </div>
+        </a>
         {% endfor %}
 
         <div class="pagination">

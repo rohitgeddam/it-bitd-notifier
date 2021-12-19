@@ -12,7 +12,7 @@
         <form method="post">
             {% csrf_token %}
             {{ form|bootstrap }}
-            <button type="submit" class="btn btn-warning w-100">Login</button>
+            <button type="submit" class="btn btn-dark w-100">Login</button>
             <a href="/accounts/password_reset/" style="color: blue;">reset password</a>
 
         </form>

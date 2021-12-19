@@ -35,4 +35,21 @@
 
 </div>
 
+<div class="card text-dark bg-light mb-3" style="margin-top: 10px;">
+    <div class="card-header"><i class="bi bi-calendar"></i> Latest Jobs and Internships</div>
+    <div class="card-body">
+        {% for e in jobs %}
+
+        <i class="bi bi-caret-right-fill"></i><a href="/jobs/{{e.id}}" class="card-title"
+            style="color: blue;">{{e.title}}</a>
+        <br>
+        {% endfor %}
+
+    </div>
+    <div class="card-footer bg-transparent"><a href="/jobs" class="badge bg-dark text-light">view all
+            jobs</a>
+    </div>
+
+</div>
+
 {% endblock %}

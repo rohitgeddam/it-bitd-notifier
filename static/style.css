@@ -1,5 +1,7 @@
 *{
 	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
 }
 a, a:hover, a:focus, a:active {
 	text-decoration: none;
@@ -14,11 +16,12 @@ body {
 	margin-bottom: 20px;
 	padding: 24 0;
 	color: black;
-	background-color: #f0f8ff;
+	/* background-color: #f0f8ff; */
+	font-weight: 900;
 }
 
 .bottom-navigation {
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	padding: 5px;
 	text-align: center;
 	color: white;
@@ -27,5 +30,13 @@ body {
 }
 
 .bottom-nav-item{ 
+	font-size: 2rem; 
+	color: black;
+}
+
+.bottom-nav-item-active{ 
+	font-size: 2rem; 
+	background: black;
 	color: white;
+
 }
