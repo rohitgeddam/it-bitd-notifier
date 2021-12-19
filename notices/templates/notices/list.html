@@ -8,7 +8,7 @@
 		<div class="mb-5">
 			<form method="GET">
 				{{filter.form|bootstrap }}
-				<button type="submit" class="btn btn-warning w-100">Search</button>
+				<button type="submit" class="btn btn-dark w-100">Search</button>
 			</form>
 		</div>
 	</div>
@@ -18,20 +18,24 @@
 		{% for notice in filter.qs %}
 
 
-		<div class="card" style="width: 100%; margin-bottom: 10px;">
-			<div class="card-body">
-				<h5 class="card-title">{{ notice.title }}</h5>
-				<h6 class="card-subtitle mb-2 text-muted">{{ notice.posted_on }}</h6>
-				<p class="card-text">{{ notice.content|safe|truncatechars:255 }}</p>
-				<div class="my-2">
-					{% for tag in notice.tags.all %}
-					<span class="badge rounded-pill bg-warning text-dark">{{tag.title}}</span>
-					{% endfor %}
-				</div>
 
-				<a href="{{notice.id}}" class="card-link" style="color: blue;">Read More</a>
+
+		<a href="{{notice.id}}" class="card-link">
+			<div class="card" style="width: 100%; margin-bottom: 10px;">
+				<div class="card-body">
+					<h5 class="card-title">{{ notice.title }}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{ notice.posted_on }}</h6>
+					<p class="card-text">{{ notice.content|safe|truncatechars:255 }}</p>
+					<div class="my-2">
+						{% for tag in notice.tags.all %}
+						<span class="badge rounded-pill bg-warning text-dark">{{tag.title}}</span>
+						{% endfor %}
+					</div>
+
+				</div>
 			</div>
-		</div>
+		</a>
+
 		{% endfor %}
 
 		<div class="pagination">

@@ -1,25 +1,25 @@
 <div>
     <div class="row align-middle">
-        <a href="/notices" class="col bottom-nav-item">
-            <div>
-                <i class="bi bi-inbox" style="font-size: 2rem; color: #f0ad4e;"></i>
+        <a href="/notices" class="col bottom-nav-item {% if request.path == notice_url %} bottom-nav-active {%endif%}">
+            <div class="bottom-nav-item {% if request.path == notice_url %} bottom-nav-item-active {%endif%}">
+                <i class="bi bi-inbox"></i>
 
             </div>
         </a>
         <a href="/events" class="col bottom-nav-item">
-            <div>
-                <i class="bi bi-calendar" style="font-size: 2rem; color:  #f0ad4e;"></i>
+            <div class="bottom-nav-item {% if request.path == event_url %} bottom-nav-item-active {%endif%}">
+                <i class="bi bi-calendar"></i>
             </div>
         </a>
         <a href="/jobs" class="col bottom-nav-item">
-            <div>
-                <i class="bi bi-clipboard-data" style="font-size: 2rem; color:  #f0ad4e;"></i>
+            <div class="bottom-nav-item {% if request.path == job_url %} bottom-nav-item-active {%endif%}">
+                <i class="bi bi-clipboard-data"></i>
             </div>
         </a>
         <div class="col bottom-nav-item">
             <a style="color: white; padding: 0;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="bi bi-person-circle" style="font-size: 2rem; color:  #f0ad4e;"></i>
+                <i class="bi bi-person-circle bottom-nav-item"></i>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
