@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_seed",
+    "rest_framework",
+    "rest_framework.authtoken",
+    
     "jobs",
     "events",
     "notices",
@@ -55,6 +59,7 @@ INSTALLED_APPS = [
     "django_filters",
     "bootstrapform",
     "ckeditor",
+    "apis"
 ]
 
 MIDDLEWARE = [
@@ -181,6 +186,13 @@ TWILIO_NUMBER = env("TWILIO_NUMBER")
 #     # "+919098301903",
 #     "+916266218189",  # use the format +19735551234
 # ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+}
+
 
 import django_heroku
 

@@ -21,6 +21,9 @@ django-heroku = "*"
 django-filter = "*"
 django-bootstrap-form = "*"
 django-ckeditor = "*"
+faker = "*"
+django-seed = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.9"
