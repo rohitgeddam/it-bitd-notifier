@@ -10,8 +10,9 @@ from rest_framework import authentication, permissions
 from notices.models import Notice
 from jobs.models import Job
 from events.models import Event
+from users.models import User
 
-from .serializers import NoticeSerializer, JobSerializer, EventSerializer
+from .serializers import NoticeSerializer, JobSerializer, EventSerializer, UserSerializer
 
 # class ExampleView(APIView):
 #     permission_classes = [IsAuthenticated]
@@ -38,9 +39,11 @@ class EventsListView(generics.ListAPIView):
     serializer_class = EventSerializer
 
 class Profile(APIView):
+    permission_classes = [IsAuthenticated]
     
     def get(self, request, format=None):
-        return Response("Get success")
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
 
     def patch(self, request, format=None):
         return Response("patched success")
