@@ -24,6 +24,7 @@ django-ckeditor = "*"
 faker = "*"
 django-seed = "*"
 djangorestframework = "*"
+exponent-server-sdk = "*"
 
 [requires]
 python_version = "3.9"

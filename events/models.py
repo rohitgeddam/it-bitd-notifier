@@ -47,7 +47,7 @@ from django.conf import settings
 from django.utils.html import strip_tags
 
 from .tasks import custom_send_email, broadcast_sms
-
+from shared.send_push_notification import bulk_send_push_messages
 
 @receiver(post_save, sender=Event)
 def my_handler(sender, instance, **kwargs):
@@ -55,5 +55,6 @@ def my_handler(sender, instance, **kwargs):
     print(instance.id)
     full_url = f"{settings.BASE_URL}/events/{instance.id}"
     content = f"\n{strip_tags(instance.description)}\nDate - {instance.date}\nTime - {instance.time}\nView Event - {full_url}"
+    bulk_send_push_messages({"title": "New Event", "body": instance.title })
     custom_send_email.delay(instance.title, content)
     broadcast_sms.delay(instance.title, content)

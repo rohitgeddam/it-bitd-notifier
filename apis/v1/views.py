@@ -44,8 +44,6 @@ class PushNotificationView(APIView):
     def post(self, request, format=None):
         user = request.user
         token = request.data.get('token')
-        print(token)
-        print(user)
         try:
             PushNotificationToken.objects.get(token=token)
         except:
