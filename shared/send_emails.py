@@ -13,23 +13,24 @@ from twilio.rest import Client
 
 @shared_task
 def custom_send_email(title, content):
-    userlist = get_user_model().objects.all()
+    pass
+#     userlist = get_user_model().objects.all()
 
-    recepient_list = []
+#     recepient_list = []
 
-    for user in userlist:
+#     for user in userlist:
 
-        if user.email != "" and user.receive_email_notification is True:
-            recepient_list.append(user.email)
+#         if user.email != "" and user.receive_email_notification is True:
+#             recepient_list.append(user.email)
 
-    message1 = (
-        title,
-        content,
-        "notifier.bitd.it@gmail.com",
-        recepient_list,
-    )
-    try:
-        send_mass_mail((message1,), fail_silently=False)
-        print("EMAIL SENT")
-    except:
-        print("ERROR OCCURED IN SENDING EMAILS")
+#     message1 = (
+#         title,
+#         content,
+#         "notifier.bitd.it@gmail.com",
+#         recepient_list,
+#     )
+# # try:
+#     send_mass_mail((message1,), fail_silently=False)
+#     print("EMAIL SENT")
+    # except:
+        # print("ERROR OCCURED IN SENDING EMAILS")
