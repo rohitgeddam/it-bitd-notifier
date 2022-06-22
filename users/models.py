@@ -58,3 +58,14 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+
+class PushNotificationToken(models.Model):
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=255)
+    
+    
+    def __str__(self):
+        return "{}-{}".format(self.user.id, self.token)

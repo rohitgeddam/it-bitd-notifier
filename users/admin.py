@@ -1,5 +1,5 @@
 # Register your models here.
-from .models import User
+from .models import User, PushNotificationToken
 from django.urls import path
 
 # from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -248,3 +248,4 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(User, CustomUserAdmin)
 # admin.site.register(User, EmailRequiredUserAdmin)
+admin.site.register(PushNotificationToken)
