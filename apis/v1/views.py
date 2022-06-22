@@ -25,17 +25,17 @@ from .serializers import NoticeSerializer, JobSerializer, EventSerializer, UserS
     
 class NoticeListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
-    queryset = Notice.objects.all().order_by('updated_on', 'posted_on')
+    queryset = Notice.objects.all().order_by('-updated_on', '-posted_on')
     serializer_class = NoticeSerializer
 
 class JobListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
-    queryset = Job.objects.all().order_by('updated_on', 'posted_on')
+    queryset = Job.objects.all().order_by('-updated_on', '-posted_on')
     serializer_class = JobSerializer
 
 class EventsListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
-    queryset = Event.objects.all().order_by('updated_on', 'posted_on')
+    queryset = Event.objects.all().order_by('-updated_on', '-posted_on')
     serializer_class = EventSerializer
 
 class PushNotificationView(APIView):
