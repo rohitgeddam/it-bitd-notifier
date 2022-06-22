@@ -27,11 +27,13 @@ class Job(models.Model):
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.conf import settings
-from .tasks import broadcast_sms, custom_send_email
+# from .tasks import broadcast_sms, custom_send_email
 
 # from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from shared.send_push_notification import bulk_send_push_messages
+from shared.send_emails import custom_send_email
+from shared.send_sms import broadcast_sms
 
 @receiver(post_save, sender=Job)
 def my_handler(sender, instance, **kwargs):

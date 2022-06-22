@@ -2,7 +2,7 @@ from django.db import models
 from core.models import YearTag
 from ckeditor.fields import RichTextField
 
-from notices.tasks import broadcast_sms, custom_send_email
+# from notices.tasks import broadcast_sms, custom_send_email
 
 
 class NoticeFile(models.Model):
@@ -36,6 +36,8 @@ from django.conf import settings
 
 from django.utils.html import strip_tags
 from shared.send_push_notification import bulk_send_push_messages
+from shared.send_emails import custom_send_email
+from shared.send_sms import broadcast_sms
 
 @receiver(post_save, sender=Notice)
 def my_handler(sender, instance, **kwargs):

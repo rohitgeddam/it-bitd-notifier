@@ -46,8 +46,10 @@ from django.dispatch import receiver
 from django.conf import settings
 from django.utils.html import strip_tags
 
-from .tasks import custom_send_email, broadcast_sms
+# from .tasks import custom_send_email, broadcast_sms
 from shared.send_push_notification import bulk_send_push_messages
+from shared.send_emails import custom_send_email
+from shared.send_sms import broadcast_sms
 
 @receiver(post_save, sender=Event)
 def my_handler(sender, instance, **kwargs):
