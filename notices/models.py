@@ -35,7 +35,7 @@ from django.dispatch import receiver
 from django.conf import settings
 
 from django.utils.html import strip_tags
-
+from shared.send_push_notification import bulk_send_push_messages
 
 @receiver(post_save, sender=Notice)
 def my_handler(sender, instance, **kwargs):
@@ -43,5 +43,6 @@ def my_handler(sender, instance, **kwargs):
     print(instance.id)
     full_url = f"{settings.BASE_URL}/notices/{instance.id}"
     content = f"\n{strip_tags(instance.content)}\nView Notice - {full_url}"
+    bulk_send_push_messages.delay({"title": "New Notice", "body": instance.title })
     custom_send_email.delay(instance.title, content)
     broadcast_sms.delay(instance.title, content)

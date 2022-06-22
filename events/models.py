@@ -55,6 +55,6 @@ def my_handler(sender, instance, **kwargs):
     print(instance.id)
     full_url = f"{settings.BASE_URL}/events/{instance.id}"
     content = f"\n{strip_tags(instance.description)}\nDate - {instance.date}\nTime - {instance.time}\nView Event - {full_url}"
-    bulk_send_push_messages({"title": "New Event", "body": instance.title })
+    bulk_send_push_messages.delay({"title": "New Event", "body": instance.title })
     custom_send_email.delay(instance.title, content)
     broadcast_sms.delay(instance.title, content)

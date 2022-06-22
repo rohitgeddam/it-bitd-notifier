@@ -16,7 +16,7 @@ from exponent_server_sdk import (
 )
 from requests.exceptions import ConnectionError, HTTPError
 
-
+@shared_task
 def bulk_send_push_messages(message):
     
     all_tokens = PushNotificationToken.objects.all()

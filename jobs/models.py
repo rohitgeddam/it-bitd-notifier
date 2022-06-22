@@ -31,7 +31,7 @@ from .tasks import broadcast_sms, custom_send_email
 
 # from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-
+from shared.send_push_notification import bulk_send_push_messages
 
 @receiver(post_save, sender=Job)
 def my_handler(sender, instance, **kwargs):
@@ -40,5 +40,6 @@ def my_handler(sender, instance, **kwargs):
     full_url = f"{settings.BASE_URL}/jobs/{instance.id}"
 
     content = f"\n{strip_tags(instance.job_description)}\nView Job Post - {full_url}"
+    bulk_send_push_messages.delay({"title": "New Job Posted", "body": instance.title })
     custom_send_email.delay(instance.title, content)
     broadcast_sms.delay(instance.title, content)
